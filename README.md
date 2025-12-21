@@ -1,2 +1,2 @@
 # donutsmp-leaderboard
-Top 1000 Leaderboard of DonutSMP
+Scrapes Top 1000 Players of DonutSMP Leaderboard once every day.
