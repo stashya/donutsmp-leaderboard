@@ -1,4 +1,4 @@
-name: Scrape Leaderboard
+name: Scrape Leaderboard and Prices
 
 on:
   schedule:
@@ -25,13 +25,18 @@ jobs:
       - name: Install dependencies
         run: pip install requests
       
-      - name: Run scraper
+      - name: Run leaderboard scraper
         run: python scraper.py
+      
+      - name: Run Discord price scraper
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: python discord_scraper.py
       
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add top1000.json usernames.json
-          git diff --staged --quiet || git commit -m "Update leaderboard $(date -u +%Y-%m-%d)"
+          git add top1000.json usernames.json spawner_prices.json
+          git diff --staged --quiet || git commit -m "Update leaderboard and prices $(date -u +%Y-%m-%d)"
           git push
