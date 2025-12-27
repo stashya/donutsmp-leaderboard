@@ -37,6 +37,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add top1000.json usernames.json spawner_prices.json
+          git add top1000.json usernames.json all_leaderboards.json spawner_prices.json
           git diff --staged --quiet || git commit -m "Update leaderboard and prices $(date -u +%Y-%m-%d)"
           git push
